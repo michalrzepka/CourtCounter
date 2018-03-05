@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Court Counter</string>
+    <string name="home_team">FC Pierdziszew</string>
+    <string name="away_team">Wichura United</string>
+    <string name="goal">Goal!</string>
+    <string name="yellow_card">Yellow card</string>
+    <string name="red_card">Red card</string>
+    <string name="yellow_card_count">Yellow card (%d)</string>
+    <string name="red_card_count">Red card (%d)</string>
+    <string name="start_timer">Start timer</string>
+    <string name="reset_stats">Reset stats</string>
+</resources>
