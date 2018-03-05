@@ -123,7 +123,7 @@
                 android:layout_weight="1"
                 android:onClick="startTimer"
                 android:text="@string/start_timer"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white" />
 
             <Button
                 style="@style/button"
@@ -131,7 +131,7 @@
                 android:layout_weight="1"
                 android:onClick="resetScore"
                 android:text="@string/reset_stats"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white" />
             />
 
         </LinearLayout>

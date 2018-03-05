@@ -32,6 +32,10 @@ public class MainActivity extends Activity {
     private final String RED_CNT_AWAY = "redCountAwayTeam";
     private final String TIME_PASSED = "timerState";
 
+    /*
+    Setting layout elements
+    */
+
     private Chronometer timer;
 
     @Override
@@ -89,11 +93,6 @@ public class MainActivity extends Activity {
         timer.start();
     }
 
-    public void stopTimer(View view){
-        timer.setBase(SystemClock.elapsedRealtime());
-        timer.stop();
-    }
-
     /*
     Home team methods.
     */
@@ -103,8 +102,13 @@ public class MainActivity extends Activity {
         scoreView.setText(String.valueOf(score));
     }
 
+    /*
+    Yellow and red cards method use string formatting to display current card count like  RED CARD(2)
+    and if statement so it doesn't display 0 in brackets when there is no card or after resetting values
+    */
+
     public void yellowCardHomeTeam(int yellowCountHomeTeam) {
-        TextView yellowCard= (TextView) findViewById(R.id.home_yellow_card);
+        TextView yellowCard = (TextView) findViewById(R.id.home_yellow_card);
         if (yellowCountHomeTeam == 0){
             yellowCard.setText(R.string.yellow_card);
         } else {
@@ -146,24 +150,20 @@ public class MainActivity extends Activity {
     }
 
     /*
-    Away team methods. Literally TON of redundancy here, would rather wrote methods that take team as parameter like:
+    Away team methods. A lot of redundancy here as it's copy paste of , would rather wrote methods that take team as parameter like:
 
     public void displayScore(String team, int score) {
     TextView scoreView = (TextView) findViewById(getResources().getIdentifier(team+"_score", "id", getPackageName()));
     scoreView.setText(String.valueOf(score));
     }
 
-    but I want to move to the next projects :-)
+
     */
 
     public void displayScoreAwayTeam(int score) {
         TextView scoreView = (TextView) findViewById(R.id.away_score);
         scoreView.setText(String.valueOf(score));
     }
-
-    /*
-    Card count displayer with formatting that depends on value -  wanted to get rid of YELLOW CARD (0) after resetting
-    */
 
     public void yellowCardAwayTeam(int yellowCountAwayTeam) {
         TextView yellowCard= (TextView) findViewById(R.id.away_yellow_card);
@@ -224,7 +224,8 @@ public class MainActivity extends Activity {
         yellowCardAwayTeam(yellowCountAwayTeam);
         redCardHomeTeam(redCountHomeTeam);
         redCardAwayTeam(redCountAwayTeam);
-        stopTimer(view);
+        timer.stop();
+        timer.setBase(SystemClock.elapsedRealtime());
     }
 
 }
