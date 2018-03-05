@@ -10,41 +10,86 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 
     /*
-    A bit of redundancy here with "Team" in every variable name bu wanted to make it consistent.
-     */
+    A bit of redundancy here with "Team" in every variable name but wanted to make it consistent.
+    */
 
-    int scoreHomeTeam = 0;
-    int scoreAwayTeam = 0;
+    private int scoreHomeTeam = 0;
+    private int scoreAwayTeam = 0;
+    private int yellowCountHomeTeam = 0;
+    private int yellowCountAwayTeam = 0;
+    private int redCountHomeTeam = 0;
+    private int redCountAwayTeam = 0;
 
-    int yellowCountHomeTeam = 0;
-    int yellowCountAwayTeam = 0;
+    /*
+    Values for saved states on rotates
+    */
 
-    int redCountHomeTeam = 0;
-    int redCountAwayTeam = 0;
+    private final String SCORE_HOME_TEAM = "scoreHomeTeam";
+    private final String SCORE_AWAY_TEAM = "scoreAwayTeam";
+    private final String YELLOW_CNT_HOME = "yellowCountHomeTeam";
+    private final String YELLOW_CNT_AWAY = "yellowCountAwayTeam";
+    private final String RED_CNT_HOME = "redCountHomeTeam";
+    private final String RED_CNT_AWAY = "redCountAwayTeam";
+    private final String TIME_PASSED = "timerState";
+
+    private Chronometer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        timer = (Chronometer) findViewById(R.id.timer);
     }
 
-//    public void displayScore(String team, int score) {
-//        TextView scoreView = (TextView) findViewById(getResources().getIdentifier(team+"_score", "id", getPackageName()));
-//        scoreView.setText(String.valueOf(score));
-//    }
+    /*
+    Saving variable  states and timer upon turning phone landscape - solution found on stack overflow
+    */
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        savedInstanceState.putInt(SCORE_HOME_TEAM, scoreHomeTeam);
+        savedInstanceState.putInt(SCORE_AWAY_TEAM, scoreAwayTeam);
+        savedInstanceState.putInt(YELLOW_CNT_HOME, yellowCountHomeTeam);
+        savedInstanceState.putInt(YELLOW_CNT_AWAY, yellowCountAwayTeam);
+        savedInstanceState.putInt(RED_CNT_HOME, redCountHomeTeam);
+        savedInstanceState.putInt(RED_CNT_AWAY, redCountAwayTeam);
+        savedInstanceState.putLong(TIME_PASSED, timer.getBase());
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        scoreHomeTeam = savedInstanceState.getInt(SCORE_HOME_TEAM);
+        scoreAwayTeam = savedInstanceState.getInt(SCORE_AWAY_TEAM);
+        yellowCountHomeTeam = savedInstanceState.getInt(YELLOW_CNT_HOME);
+        yellowCountAwayTeam = savedInstanceState.getInt(YELLOW_CNT_AWAY);
+        redCountHomeTeam = savedInstanceState.getInt(RED_CNT_HOME);
+        redCountAwayTeam = savedInstanceState.getInt(RED_CNT_AWAY);
+        timer.setBase(savedInstanceState.getLong(TIME_PASSED));
+
+        displayScoreHomeTeam(scoreHomeTeam);
+        displayScoreAwayTeam(scoreAwayTeam);
+        yellowCardHomeTeam(yellowCountHomeTeam);
+        yellowCardAwayTeam(yellowCountAwayTeam);
+        redCardHomeTeam(redCountHomeTeam);
+        redCardAwayTeam(redCountAwayTeam);
+        timer.start();
+
+    }
 
     /*
     Timer start and stop
     */
 
     public void startTimer(View view){
-        Chronometer timer = findViewById(R.id.timer);
         timer.setBase(SystemClock.elapsedRealtime());
         timer.start();
     }
 
     public void stopTimer(View view){
-        Chronometer timer = findViewById(R.id.timer);
         timer.setBase(SystemClock.elapsedRealtime());
         timer.stop();
     }
@@ -164,7 +209,7 @@ public class MainActivity extends Activity {
 
     /*
     Reset all
-     */
+    */
 
     public void resetScore(View view) {
         scoreHomeTeam = 0;

@@ -1,137 +1,140 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg">
+    android:fillViewport="true">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:orientation="horizontal"
-        >
+        android:orientation="vertical"
+        android:background="@color/background">
 
         <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_marginTop="48dp"
+            android:orientation="horizontal">
 
-            <TextView
-                style="@style/teamName"
-                android:text="@string/home_team" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                style="@style/teamScore"
-                android:id="@+id/home_score"/>
+                <TextView
+                    style="@style/teamName"
+                    android:text="@string/home_team" />
 
-            <Button
-                style="@style/button"
-                android:onClick="goalHomeTeam"
-                android:text="@string/goal"
-                android:textColor="@android:color/white"/>
+                <TextView
+                    android:id="@+id/home_score"
+                    style="@style/teamScore" />
 
-            <Button
-                style="@style/button"
-                android:id="@+id/home_yellow_card"
-                android:onClick="addYellowCardHomeTeam"
-                android:text="@string/yellow_card"
-                android:textColor="@color/yellowCard"/>
+                <Button
+                    style="@style/button"
+                    android:onClick="goalHomeTeam"
+                    android:text="@string/goal"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp" />
 
-            <Button
-                style="@style/button"
-                android:id="@+id/home_red_card"
-                android:onClick="addRedCardHomeTeam"
-                android:text="@string/red_card"
-                android:textColor="@color/redCard"/>
+                <Button
+                    android:id="@+id/home_yellow_card"
+                    style="@style/button"
+                    android:onClick="addYellowCardHomeTeam"
+                    android:text="@string/yellow_card"
+                    android:textColor="@color/yellowCard" />
+
+                <Button
+                    android:id="@+id/home_red_card"
+                    style="@style/button"
+                    android:onClick="addRedCardHomeTeam"
+                    android:text="@string/red_card"
+                    android:textColor="@color/redCard" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/teamName"
+                    android:text="@string/away_team" />
+
+                <TextView
+                    android:id="@+id/away_score"
+                    style="@style/teamScore" />
+
+                <Button
+                    style="@style/button"
+                    android:onClick="goalAwayTeam"
+                    android:text="@string/goal"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"/>
+
+                <Button
+                    android:id="@+id/away_yellow_card"
+                    style="@style/button"
+                    android:onClick="addYellowCardAwayTeam"
+                    android:text="@string/yellow_card"
+                    android:textColor="@color/yellowCard" />
+
+                <Button
+                    android:id="@+id/away_red_card"
+                    style="@style/button"
+                    android:onClick="addRedCardAwayTeam"
+                    android:text="@string/red_card"
+                    android:textColor="@color/redCard" />
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"/>
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
 
+            <Chronometer
+                style="@style/timer"
+                android:id="@+id/timer" />
+
+        </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/teamName"
-                android:text="@string/away_team" />
-
-            <TextView
-                style="@style/teamScore"
-                android:id="@+id/away_score"/>
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
 
             <Button
                 style="@style/button"
-                android:onClick="goalAwayTeam"
-                android:text="@string/goal"
+                android:id="@+id/start_timer"
+                android:layout_weight="1"
+                android:onClick="startTimer"
+                android:text="@string/start_timer"
                 android:textColor="@android:color/white"/>
-
+            
             <Button
                 style="@style/button"
-                android:id="@+id/away_yellow_card"
-                android:onClick="addYellowCardAwayTeam"
-                android:text="@string/yellow_card"
-                android:textColor="@color/yellowCard"/>
-
-            <Button
-                style="@style/button"
-                android:id="@+id/away_red_card"
-                android:onClick="addRedCardAwayTeam"
-                android:text="@string/red_card"
-                android:textColor="@color/redCard"/>
-
+                android:id="@+id/reset_counters"
+                android:layout_weight="1"
+                android:onClick="resetScore"
+                android:text="@string/reset_stats"
+                android:textColor="@android:color/white"/>
             />
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-        <Chronometer
-            style="@style/timer"
-            android:id="@+id/timer" />
-
-        />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal">
-
-        <Button
-            style="@style/button"
-            android:id="@+id/start_timer"
-            android:layout_weight="1"
-            android:onClick="startTimer"
-            android:text="@string/start_timer"
-            android:textColor="@android:color/white"/>
-        />
-
-        <Button
-            style="@style/button"
-            android:id="@+id/reset_counters"
-            android:layout_weight="1"
-            android:onClick="resetScore"
-            android:text="@string/reset_stats"
-            android:textColor="@android:color/white"/>
-        />
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
