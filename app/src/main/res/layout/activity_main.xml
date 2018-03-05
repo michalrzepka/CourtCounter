@@ -124,7 +124,7 @@
                 android:onClick="startTimer"
                 android:text="@string/start_timer"
                 android:textColor="@android:color/white"/>
-            
+
             <Button
                 style="@style/button"
                 android:id="@+id/reset_counters"
