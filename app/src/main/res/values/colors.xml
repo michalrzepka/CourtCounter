@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<color name="background">#183310</color>
+<color name="background">#33691E</color>
 <color name="button">#6D6A72</color>
-<color name="yellowCard">#FFF300</color>
-<color name="redCard">#d50000</color>
+<color name="yellowCard">#FFEE58</color>
+<color name="redCard">#D32F2F</color>
 
 
 </resources>
